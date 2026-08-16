@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "doctoc"
+version = "1.0.0"
+description = "Generate and sync GitHub-compatible tables of contents for Markdown files with CI-friendly drift checking"
+readme = "README.md"
+requires-python = ">=3.11"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Manus AI" },
+]
+keywords = ["markdown", "toc", "table-of-contents", "documentation", "github"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Typing :: Typed",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Documentation",
+    "Topic :: Software Development :: Build Tools",
+    "Typing :: Typed",
+]
+
+[project.scripts]
+doctoc = "doctoc.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/raofal-msodeh/doctoc"
+Documentation = "https://github.com/raofal-msodeh/doctoc#readme"
+Repository = "https://github.com/raofal-msodeh/doctoc"
+Issues = "https://github.com/raofal-msodeh/doctoc/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.mypy]
+strict = true
+warn_unreachable = true
+show_error_codes = true
+
+[tool.ruff]
+src = ["src", "tests"]
+line-length = 99
+
+[tool.ruff.lint]
+select = [
+    "E", "W", "F", "I", "UP", "N", "B", "A", "C4", "SIM",
+    "TCH", "ARG", "PTH", "RUF",
+]
+ignore = ["SIM117", "SIM102", "RUF022", "RUF067", "PTH123", "PTH100"]
+preview = true
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["PTH103", "PTH106", "PTH108", "PTH118", "PTH119", "PTH120", "PTH211", "ARG001", "S603"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["doctoc"]
